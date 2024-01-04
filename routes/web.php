@@ -31,11 +31,6 @@ Route::resource('cities', CityController::class);
 Route::group(['middleware' => ['auth']], function () {
     Route::resource('admin/groups', GroupController::class);
     Route::get('/logout', [AuthController::class, 'logout']);
-
-    // Group API
-    Route::get('/groups', [GroupController::class, 'groups']);
-    Route::get('/groups/{id}', [GroupController::class, 'single']);
-
 });
 
 Route::controller(AuthController::class)->group(function () {

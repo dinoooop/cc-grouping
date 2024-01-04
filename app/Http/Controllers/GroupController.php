@@ -76,13 +76,13 @@ class GroupController extends Controller
 
     public function groups(Request $request)
     {
-        $groups = Group::where('user_id', gcuid())->orderBy('created_at', 'DESC')->with('countries')->get();
+        $groups = Group::where('user_id', gcuid())->with('countries')->with('cities')->orderBy('created_at', 'DESC')->get();
         return response()->json($groups);
     }
 
     public function single(Request $request, $id)
     {
-        $groups = Group::where('user_id', gcuid())->where('id', $id)->orderBy('created_at', 'DESC')->with('countries')->get();
+        $groups = Group::where('user_id', gcuid())->where('id', $id)->with('countries')->with('cities')->get();
         return response()->json($groups);
     }
 }

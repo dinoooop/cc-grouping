@@ -26,7 +26,11 @@ class AuthController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect()->intended('admin/groups');
+            $user = Auth::user();
+            $token = $user->createToken('token-name')->plainTextToken;
+            $cookie = cookie('access_token', $token, 60 * 24 * 30);
+
+            return redirect()->intended('admin/groups')->withCookie($cookie);
         }
 
         return back()->withErrors([

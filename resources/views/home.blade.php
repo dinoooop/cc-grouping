@@ -5,6 +5,7 @@
 @section('content')
 
 @include('templates.nav')
+<div class="api-test">Test API</div>
 <section class="content">
     <table class="general-table">
         <thead>
