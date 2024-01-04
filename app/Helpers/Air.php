@@ -32,3 +32,21 @@ function getCountries()
     $body = $response->body();
     return json_decode($body);
 }
+
+function getCities()
+{
+    $url = 'https://countriesnow.space/api/v0.1/countries/population/cities';
+    $options = [
+        'headers' => [
+            'Authorization' => 'Bearer your_access_token',
+            'Content-Type' => 'application/json',
+        ],
+        'json' => [
+            'key' => 'value',
+        ],
+    ];
+
+    $response = Http::get($url, $options);
+    $body = $response->body();
+    return json_decode($body);
+}

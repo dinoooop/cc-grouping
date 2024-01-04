@@ -9,9 +9,21 @@ use Illuminate\Support\Facades\Http;
 
 class TestController extends Controller
 {
-    function test()
-    {
-      $data = Group::where('user_id', 1)->with('countries')->get();
-      return response()->json($data);
+  function test()
+  {
+
+    echo round(10.2563);
+    exit();
+    $cities = getCities();
+    $count = 0;
+    foreach ($cities->data as $key => $city) {
+
+      $tock[] = [
+        'name' => $city->city,
+        'population' => end($city->populationCounts)->value
+      ];
     }
+
+    print_r($tock);
+  }
 }

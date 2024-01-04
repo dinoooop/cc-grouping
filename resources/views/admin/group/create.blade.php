@@ -17,6 +17,13 @@
         <input name="countries[]" type="checkbox" value="{{ $country->id }}" id="country-{{ $country->id }}" />
         @endforeach
     </div>
+    <div class="form-group select-list-item">
+        <label for="cities">Select Cities:</label>
+        @foreach($cities as $key => $city)
+        <label class="select-item" for="city-{{ $city->id }}">{{ $city->name }}</label>
+        <input name="cities[]" type="checkbox" value="{{ $city->id }}" id="city-{{ $city->id }}" />
+        @endforeach
+    </div>
 
     <button type="submit">Submit</button>
 </form>

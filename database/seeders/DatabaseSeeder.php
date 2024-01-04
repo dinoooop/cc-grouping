@@ -22,12 +22,27 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $countries = getCountries();
-
         foreach ($countries->data as $key => $country) {
             DB::table('countries')->insert([
                 'name' => $country->name,
                 'currency' => $country->currency,
             ]);
+        }
+
+        $cities = getCities();
+        $count = 0;
+        foreach ($cities->data as $key => $city) {
+            
+            DB::table('cities')->insert([
+                'name' => $city->city,
+                'population' => round(end($city->populationCounts)->value)
+            ]);
+
+            $count++;
+            
+            if ($count >= 100) {
+                break;
+            }
         }
     }
 }

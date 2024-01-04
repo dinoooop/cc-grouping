@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\City;
 use App\Models\Country;
 use Illuminate\Http\Request;
 use App\Models\Group;
@@ -21,14 +22,17 @@ class GroupController extends Controller
     {
         $group = Group::find($id);
         $countries = Country::all();
-        $selected = $group->countries->pluck('id')->all();
-        return view('admin.group.edit', compact('group', 'countries', 'selected'));
+        $cities = City::all();
+        $selectedCountries = $group->countries->pluck('id')->all();
+        $selectedCities = $group->cities->pluck('id')->all();
+        return view('admin.group.edit', compact('group', 'countries', 'selectedCountries', 'cities', 'selectedCities'));
     }
 
     public function create()
     {
         $countries = Country::all();
-        return view('admin.group.create', compact('countries'));
+        $cities = City::all();
+        return view('admin.group.create', compact('countries', 'cities'));
     }
 
     public function store(Request $request)
@@ -36,12 +40,14 @@ class GroupController extends Controller
         $validated = $request->validate([
             'name' => 'required',
             'countries' => 'sometimes',
+            'cities' => 'sometimes',
         ]);
 
         $validated['user_id'] = gcuid();
 
         $group = Group::create($validated);
         $group->countries()->attach($request->countries);
+        $group->cities()->attach($request->cities);
 
         return redirect('/admin/groups');
     }
@@ -51,11 +57,13 @@ class GroupController extends Controller
         $validated = $request->validate([
             'name' => 'required',
             'countries' => 'sometimes',
+            'cities' => 'sometimes',
         ]);
 
         $group = Group::find($id);
         $group->update($validated);
         $group->countries()->sync($request->countries);
+        $group->cities()->sync($request->cities);
 
         return redirect('/admin/groups');
     }
