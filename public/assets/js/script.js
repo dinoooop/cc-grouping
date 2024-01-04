@@ -28,7 +28,7 @@ $(document).ready(function () {
             url: '/api/groups',
             type: 'GET',
             headers: {
-                'Authorization': 'Bearer eyJpdiI6IjZuc2hsOHQzb0ZCZ1cxaTBxcnEwcHc9PSIsInZhbHVlIjoiQzNkTmVHU3pNY2VEWFJxZXBCbVVkWUZvcWYvaFR4TG9ucFAvaGVuUys3OEN5VkM0NHVxdStwdlpZNHgzaGJZMTczY3hJNVhvQ21TYXRrK2VhWnpYOHdwRTN3Vy95ZkdUQTdSVktZU0FHQ3Ria1NiUjA1Q1Vla0dmdGRLdk9yQUwiLCJtYWMiOiJmZWY2OGVmZTJhMjI4YmM3MDgzZTM3OTQ4ZDhhYTM1OWRkZTUzMGRjMDhjYTU5YTcwNWIzZTAzZWRjODNkN2Q2IiwidGFnIjoiIn0='
+                'Authorization': 'Bearer ' + YOUR_ACCESS_TOKEN
             },
             success: function (response) {
                 console.log(response);
