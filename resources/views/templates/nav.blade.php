@@ -7,7 +7,7 @@
             <a href="{{ url('/countries') }}">Countries</a>
             <a href="{{ url('/cities') }}">Cities</a>
             @auth
-            <a href="{{ url('/admin/groups') }}">Groups</a>
+            <a href="{{ url('/admin/groups') }}">Dashboard</a>
             <a href="{{ url('/logout') }}">Logout</a>
             @else
             <a href="{{ url('/login') }}">Login</a>

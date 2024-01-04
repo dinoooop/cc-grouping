@@ -1,17 +1,18 @@
 @extends('layouts.front')
-@section('title', 'Countries')
+@section('title', 'API List')
 
 
 @section('content')
 
 @include('templates.nav')
+<div class="get-api">GET API</div>
 <section class="content">
     <table class="general-table">
         <thead>
             <tr>
-                <th><a href="{{ url('countries?sb=id&so=' . $so) }}">ID <span>&#x2195;</span></a></th>
-                <th><a href="{{ url('countries?sb=name&so=' . $so) }}">Country <span>&#x2195;</span></a></th>
-                <th><a href="{{ url('countries?sb=currency&so=' . $so) }}">Currency <span>&#x2195;</span></a></th>
+                <th>ID</th>
+                <th>Country</th>
+                <th>Currency</th>
             </tr>
         </thead>
         <tbody>

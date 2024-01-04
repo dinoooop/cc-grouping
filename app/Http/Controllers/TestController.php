@@ -11,6 +11,7 @@ class TestController extends Controller
 {
     function test()
     {
-      echo auth()->id();
+      $data = Group::where('user_id', 1)->with('countries')->get();
+      return response()->json($data);
     }
 }

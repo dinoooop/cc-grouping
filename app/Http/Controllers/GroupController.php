@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Country;
 use Illuminate\Http\Request;
 use App\Models\Group;
 use Illuminate\Support\Str;
 
 class GroupController extends Controller
 {
+
+
     public function index(Request $request)
     {
         $groups = Group::orderBy('created_at', 'DESC')->get();
@@ -17,12 +20,15 @@ class GroupController extends Controller
     public function edit($id)
     {
         $group = Group::find($id);
-        return view('admin.group.edit', compact('group'));
+        $countries = Country::all();
+        $selected = $group->countries->pluck('id')->all();
+        return view('admin.group.edit', compact('group', 'countries', 'selected'));
     }
 
     public function create()
     {
-        return view('admin.group.create');
+        $countries = Country::all();
+        return view('admin.group.create', compact('countries'));
     }
 
     public function store(Request $request)
@@ -33,7 +39,6 @@ class GroupController extends Controller
         ]);
 
         $validated['user_id'] = gcuid();
-        $validated['slug'] = Str::slug($validated['name'], '-');
 
         $group = Group::create($validated);
         $group->countries()->attach($request->countries);
@@ -48,18 +53,28 @@ class GroupController extends Controller
             'countries' => 'sometimes',
         ]);
 
-        $validated['slug'] = Str::slug($validated['name'], '-');
-        
         $group = Group::find($id);
         $group->update($validated);
         $group->countries()->sync($request->countries);
 
-        return redirect('/admin/groups/' . $id . '/edit');
+        return redirect('/admin/groups');
     }
 
     public function destroy(Request $request, $id)
     {
         $data = Group::find($id)->delete();
         return response()->json($data);
+    }
+
+    public function groups(Request $request)
+    {
+        $groups = Group::where('user_id', gcuid())->orderBy('created_at', 'DESC')->with('countries')->get();
+        return response()->json($groups);
+    }
+
+    public function single(Request $request, $id)
+    {
+        $groups = Group::where('user_id', gcuid())->where('id', $id)->orderBy('created_at', 'DESC')->with('countries')->get();
+        return response()->json($groups);
     }
 }

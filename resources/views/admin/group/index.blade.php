@@ -6,11 +6,7 @@
 <h1>Groups</h1>
 
 <div class="table-top">
-    <div class="form-group">
-        <input type="text" name="search" />
-    </div>
-    <a href="/admin/groups" class="btn"><i class="fas fa-search"></i></a>
-    <a href="/admin/groups/create" class="btn"><i class="fas fa-add"></i></a>
+    <a href="/admin/groups/create" class="btn">Create</a>
 </div>
 
 <table>
@@ -27,8 +23,8 @@
             <td>{{$group['id']}}</td>
             <td>{{$group['name']}}</td>
             <td>
-                <a href="/admin/groups/{{$group['id']}}/edit" class="btn"><i class="fas fa-edit"></i></a>
-                <button data-model-end-point="groups" data-model-id="{{ $group->id }}" class="btn trash"><i class="fas fa-trash"></i></button>
+                <a href="/admin/groups/{{$group['id']}}/edit" class="btn">Edit</i></a>
+                <button data-model-end-point="groups" data-model-id="{{ $group->id }}" class="btn trash">Delete</button>
             </td>
         </tr>
         @endforeach

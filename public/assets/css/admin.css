@@ -1,8 +1,8 @@
 :root {
-    --color-1: #052b38;
-    --color-2: #31022e;
-    --color-3: #51024a;
-    --color-4: #75046c;
+    --color-1: #031b24;
+    --color-2: #083342;
+    --color-3: #00bbff;
+    --color-4: #8ce0ff;
     --white: #ededed;
     --black: #1c001a;
     --border: 1px solid rgba(255, 255, 255, 0.2);
@@ -26,6 +26,9 @@ body {
     font-size: 0.7rem;
 }
 
+h1 {
+    font-size: 2rem;
+}
 .container {
     display: flex;
     align-items: start;
@@ -130,7 +133,7 @@ td {
     padding: 0.5rem 0.8rem;
     background-color: var(--color-3);
     display: inline-block;
-    color: var(--white);
+    color: var(--black);
     border-radius: 0.3rem;
     transition: all ease-in 0.3s;
 
@@ -156,4 +159,21 @@ td {
     width: 15rem;
     margin-top: 0;
     padding: 0.5rem;
+}
+
+
+label.select-item {
+    display: inline-block;
+    border: 0.1rem solid var(--color-2);
+    padding: 0.1rem 0.2rem ;
+    margin: 0.1rem;
+
+}
+.select-item.checked {
+    background-color: var(--color-4);
+    color: var(--black);
+}
+
+.select-list-item input[type="checkbox"] {
+    display: none;
 }
