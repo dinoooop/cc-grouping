@@ -28,7 +28,7 @@ $(document).ready(function () {
             url: '/api/groups',
             type: 'GET',
             headers: {
-                'Authorization': 'Bearer ' + YOUR_ACCESS_TOKEN
+                'Authorization': 'Bearer ' + TOKEN
             },
             success: function (response) {
                 console.log(response);

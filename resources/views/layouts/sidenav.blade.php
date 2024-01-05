@@ -13,6 +13,7 @@
             <ul>
                 <li><a href="/">Home</a></li>
                 <li><a href="/admin/groups">Groups</a></li>
+                <li><a href="/admin/api-test">API test</a></li>
                 <li><a href="/logout">Logout</a></li>
             </ul>
 

@@ -14,4 +14,11 @@ class GeneralController extends Controller
         return view('home', compact('countries'));
 
     }
+
+    public function apiTest(Request $request)
+    {
+
+        return view('admin.apitest.test');
+
+    }
 }
