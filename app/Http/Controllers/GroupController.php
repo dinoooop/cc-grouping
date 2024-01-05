@@ -14,13 +14,13 @@ class GroupController extends Controller
 
     public function index(Request $request)
     {
-        $groups = Group::orderBy('created_at', 'DESC')->get();
+        $groups = Group::where('user_id', gcuid())->orderBy('created_at', 'DESC')->get();
         return view('admin.group.index', compact('groups'));
     }
 
     public function edit($id)
     {
-        $group = Group::find($id);
+        $group = Group::where('user_id', gcuid())->where('id', $id)->firstOrFail();
         $countries = Country::all();
         $cities = City::all();
         $selectedCountries = $group->countries->pluck('id')->all();

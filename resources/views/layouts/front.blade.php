@@ -3,7 +3,6 @@
 
 <head>
     @include('templates.head')
-    <link href="{{ asset('assets/css/home.css') }}" rel="stylesheet">
     @yield('head')
 </head>
 
